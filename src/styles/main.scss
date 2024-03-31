@@ -1,0 +1,135 @@
+.inactive {
+    display: none;
+}
+
+#filesets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: column;
+    list-style-type: none;
+    width: 80vw;
+
+    >* {
+        width: 80vw;
+    }
+
+    .fileset {
+        border: 1px solid rgb(229, 229, 229);
+        background-color: rgb(255, 255, 255);
+
+        +.fileset {
+            border-top: none;
+        }
+
+        .fileset-header {
+            position: relative;
+            $padding-size: 5px;
+            justify-content: space-between;
+            align-items: center;
+            padding: $padding-size;
+            width: calc(100% - 2 * #{$padding-size});
+            border-bottom: 1px solid rgb(229, 229, 229);
+
+            * {
+                min-width: 0;
+            }
+
+            .fileset-identifiers {
+                max-width: calc(100% - 4em);
+
+                * {
+                    overflow-x: hidden;
+                    white-space: nowrap;
+                }
+
+                .fileset-name {
+                    flex-shrink: 0;
+                    margin-top: 0.2em;
+                    margin-bottom: 0.5em;
+                    margin-left: 0.5em;
+                    width: 100%;
+                    border-bottom: 1px solid gray;
+                }
+
+                .fileset-path {
+                    font-size: 0.9em;
+                    margin-bottom: 0.2em;
+                    margin-top: 0;
+                    margin-left: 0.5em;
+                    color: rgb(100, 100, 100);
+                    width: 100%;
+                }
+            }
+
+            .fileset-menu-wrapper {
+                position: absolute;
+                margin-top: -0.5em;
+                width: 2em;
+                user-select: none;
+                top: 50%;
+                transform: translateY(-50%);
+                right: 0;
+            }
+
+            .fileset-menu-checkbox,
+            .menu {
+                display: none;
+            }
+
+            .fileset-menu-checkbox:checked+.menu {
+                display: block;
+            }
+
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: flex-start;
+            align-content: flex-start;
+            padding: 0.5em;
+            width: calc(100% - 1em);
+            border-bottom: 1px solid rgb(229, 229, 229);
+
+            .tag {
+                margin: 0.2em;
+                padding: 0.2em;
+                border: 1px solid rgb(229, 229, 229);
+                border-radius: 0.2em;
+                background-color: rgb(231, 231, 231);
+                font-size: 0.8em;
+                font-weight: bold;
+                color: rgb(27, 27, 27);
+                cursor: pointer;
+            }
+
+            .tag:hover {
+                background-color: rgb(220, 219, 219);
+            }
+        }
+    }
+
+    #add-new-file {
+        height: 60px;
+        width: 100%;
+        background: radial-gradient(circle at center, rgb(200, 229, 255) 0px, rgb(200, 229, 255) 25px, aliceblue 100%);
+        border: 1px solid aliceblue;
+        padding: 5px;
+        cursor: pointer;
+
+        img {
+            height: 50px;
+            width: 50px;
+        }
+    }
+
+    .fileset:hover {
+        background-color: rgba(251, 251, 251, 0.678);
+        cursor: pointer;
+    }
+
+
+
+}

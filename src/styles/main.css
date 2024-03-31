@@ -1,0 +1,114 @@
+.inactive {
+  display: none;
+}
+
+#filesets {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-direction: column;
+  list-style-type: none;
+  width: 80vw;
+}
+#filesets > * {
+  width: 80vw;
+}
+#filesets .fileset {
+  border: 1px solid rgb(229, 229, 229);
+  background-color: rgb(255, 255, 255);
+}
+#filesets .fileset + .fileset {
+  border-top: none;
+}
+#filesets .fileset .fileset-header {
+  position: relative;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+  width: calc(100% - 2 * 5px);
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+#filesets .fileset .fileset-header * {
+  min-width: 0;
+}
+#filesets .fileset .fileset-header .fileset-identifiers {
+  max-width: calc(100% - 4em);
+}
+#filesets .fileset .fileset-header .fileset-identifiers * {
+  overflow-x: hidden;
+  white-space: nowrap;
+}
+#filesets .fileset .fileset-header .fileset-identifiers .fileset-name {
+  flex-shrink: 0;
+  margin-top: 0.2em;
+  margin-bottom: 0.5em;
+  margin-left: 0.5em;
+  width: 100%;
+  border-bottom: 1px solid gray;
+}
+#filesets .fileset .fileset-header .fileset-identifiers .fileset-path {
+  font-size: 0.9em;
+  margin-bottom: 0.2em;
+  margin-top: 0;
+  margin-left: 0.5em;
+  color: rgb(100, 100, 100);
+  width: 100%;
+}
+#filesets .fileset .fileset-header .fileset-menu-wrapper {
+  position: absolute;
+  margin-top: -0.5em;
+  width: 2em;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+  top: 50%;
+  transform: translateY(-50%);
+  right: 0;
+}
+#filesets .fileset .fileset-header .fileset-menu-checkbox,
+#filesets .fileset .fileset-header .menu {
+  display: none;
+}
+#filesets .fileset .fileset-header .fileset-menu-checkbox:checked + .menu {
+  display: block;
+}
+#filesets .fileset .tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-start;
+  align-content: flex-start;
+  padding: 0.5em;
+  width: calc(100% - 1em);
+  border-bottom: 1px solid rgb(229, 229, 229);
+}
+#filesets .fileset .tags .tag {
+  margin: 0.2em;
+  padding: 0.2em;
+  border: 1px solid rgb(229, 229, 229);
+  border-radius: 0.2em;
+  background-color: rgb(231, 231, 231);
+  font-size: 0.8em;
+  font-weight: bold;
+  color: rgb(27, 27, 27);
+  cursor: pointer;
+}
+#filesets .fileset .tags .tag:hover {
+  background-color: rgb(220, 219, 219);
+}
+#filesets #add-new-file {
+  height: 60px;
+  width: 100%;
+  background: radial-gradient(circle at center, rgb(200, 229, 255) 0px, rgb(200, 229, 255) 25px, aliceblue 100%);
+  border: 1px solid aliceblue;
+  padding: 5px;
+  cursor: pointer;
+}
+#filesets #add-new-file img {
+  height: 50px;
+  width: 50px;
+}
+#filesets .fileset:hover {
+  background-color: rgba(251, 251, 251, 0.678);
+  cursor: pointer;
+}/*# sourceMappingURL=main.css.map */

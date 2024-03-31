@@ -1,0 +1,43 @@
+#fileset-manager {
+  font: 1em Arial, sans-serif;
+  width: 50%;
+  font-weight: normal;
+  margin: 0 auto;
+  table-layout: fixed;
+  border-collapse: collapse;
+  border: 2px solid #000;
+}
+#fileset-manager th {
+  font-weight: normal;
+}
+#fileset-manager th:nth-child(3),
+#fileset-manager td:nth-child(3) {
+  border-right: 1px solid #000;
+  text-overflow: clip;
+  padding: 0;
+}
+#fileset-manager th,
+#fileset-manager td {
+  padding: 0.5em;
+}
+#fileset-manager .select:hover,
+#fileset-manager tr.selected {
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.03);
+}
+#fileset-manager thead tr {
+  border-bottom: 2px solid #000;
+  text-align: center;
+}
+#fileset-manager tbody tr:not(:last-child) {
+  border-bottom: 1px solid #000;
+}
+#fileset-manager tbody td {
+  height: 30px;
+  padding-left: 1em;
+  padding-right: 0.5em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+  text-align: left;
+}/*# sourceMappingURL=fileset-manager.css.map */

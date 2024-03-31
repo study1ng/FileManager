@@ -1,0 +1,92 @@
+#tab-container {
+  overflow: hidden;
+}
+#tab-container #login-tab,
+#tab-container #register-tab {
+  position: fixed;
+  width: 89.8vw;
+  left: 4vw;
+  justify-content: center;
+  align-items: center;
+  background-color: #f2f2f2;
+  /*cursor: pointer;*/
+  border: 0.1vw solid #000;
+  padding: 1vw;
+  border-radius: 10px 10px 0 0;
+  overflow-y: hidden;
+  height: 85vh;
+}
+#tab-container #login-tab .button-wrapper,
+#tab-container #register-tab .button-wrapper {
+  display: flex;
+  justify-content: space-between;
+  margin: 0.5vh auto;
+  height: 8vh;
+}
+#tab-container #login-tab .button-wrapper button,
+#tab-container #register-tab .button-wrapper button {
+  background-color: transparent;
+  cursor: pointer;
+  height: 60%;
+  outline: 2px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+  margin: auto;
+}
+#tab-container #login-tab #login-main,
+#tab-container #register-tab #login-main {
+  height: 87vh;
+}
+#tab-container #login-tab #login-main #login-password-group,
+#tab-container #register-tab #login-main #login-password-group {
+  display: none;
+}
+#tab-container #login-tab .main .group,
+#tab-container #register-tab .main .group {
+  display: flex;
+  flex-direction: column;
+  margin: 1vh auto;
+  width: 55%;
+}
+#tab-container #login-tab .main .group label,
+#tab-container #register-tab .main .group label {
+  font: 0.8em Arial, sans-serif;
+  font-weight: bold;
+  color: rgba(0, 0, 0, 0.7);
+}
+#tab-container #login-tab .main .group .msg,
+#tab-container #register-tab .main .group .msg {
+  font: 0.8em Arial, sans-serif;
+  margin: 0.5vh 0;
+}
+#tab-container #login-tab .main #password-group,
+#tab-container #register-tab .main #password-group {
+  display: none;
+}
+#tab-container .visible-tab {
+  top: 3vh;
+  z-index: 0;
+}
+#tab-container .hidden-tab {
+  top: 90vh;
+  z-index: 1;
+  cursor: grab;
+}
+
+.updown {
+  animation-name: updown;
+  animation-duration: 0.3s;
+  animation-iteration-count: 4;
+  animation-timing-function: ease-in-out;
+  animation-direction: alternate;
+}
+
+@keyframes updown {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-10px);
+  }
+}/*# sourceMappingURL=tabs.css.map */

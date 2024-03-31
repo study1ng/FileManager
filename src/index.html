@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="styles.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tauri App</title>
+    <script type="module" src="./main.js"></script>
+    <style id="forjs">
+    </style>
+</head>
+
+<body>
+    <div id="tab-container">
+        <div id="login-tab" class="visible-tab">
+            <div class="hook button-wrapper" id="change-to-login">
+                <button type="button">Use exist Fileset</button>
+            </div>
+            <div id="login-main" class="main">
+                <!--最大で5行程度の表示, overflowはscrollにすること.
+                        行が選択されたらその行だけ残す-->
+                <table id="fileset-manager">
+                    <thead>
+                        <tr>
+                            <th style="width:20px" class="select"><!--チェックマーク--></th>
+                            <th style="width:200px;" class="select">名前</th>
+                            <th style="width:20px;" class="select"><!--鍵マーク--></th>
+                            <th style="width:150px;" class="select">最終利用日時</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="group" id="login-password-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="login-password" name="password" />
+                    <p class="msg"></p>
+                </div>
+                <div class="button-wrapper">
+                    <button type="button" id="login-button">Login</button>
+                </div>
+            </div>
+        </div>
+        <div id="register-tab" class="hidden-tab">
+            <div class="hook button-wrapper">
+                <button type="button" id="change-to-register">Make new fileset?</button>
+            </div>
+            <div id="register-main" class="main">
+                <div class="group" id="fileset-name-group">
+                    <label for="fileset-name">Fileset name</label>
+                    <input type="text" id="fileset-name" name="fileset-name" />
+                    <p class="msg"></p>
+                </div>
+                <div class="group" id="need-password-group">
+                    <label for="need-password">Need password?</label>
+                    <input type="checkbox" name="need-password" id="need-password" />
+                </div>
+                <div class="group" id="password-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="registration-password" name="password" />
+                    <p class="msg"></p>
+                </div>
+                <div class="button-wrapper">
+                    <button type="button" id="registration-button">Register</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="main" class="inactive">
+        <ul id="filesets">
+            <li class="fileset">
+                <div class="fileset-header">
+                    <div class="fileset-identifiers">
+                        <p class="fileset-name">Python Libs</p>
+                        <p class="fileset-path">C:/Users/UserName/AppData/Local/Programs/Python/Python311/python.exe</p>
+                    </div>
+                    <div class="fileset-menu-wrapper">
+                        <label for="chkbox1">...</label>
+                        <input type="radio" name="menu" id="chkbox1" class="fileset-menu-checkbox">
+                        <ul class="menu">
+                            <li class="fileset-menu-item">編集する</li>
+                            <li class="fileset-menu-item">削除</li>
+                            <li class="fileset-menu-item">開き方を指定する</li>
+                            <li class="fileset-menu-item">パスをコピーする</li>
+                            <li class="fileset-menu-item">ファイルを開く</li>
+                            <li class="fileset-menu-item">親フォルダを開く</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tags">
+                    <p class="tag">Programming</p>
+                    <p class="tag">Libraries</p>
+                </div>
+            </li>
+            <li class="fileset">
+                <div class="fileset-header">
+                    <div class="fileset-identifiers">
+                        <p class="fileset-name">Private somethings</p>
+                        <p class="fileset-path">
+                            C:/Users/UserName/for-school/Advanced-chemistry/reports/1/pdfs/hidden-folder/games/hogehoge/hogehoge.exe
+                        </p>
+                    </div>
+                    <div class="fileset-menu-wrapper">
+                        <label for="chkbox2">...</label>
+                        <input type="radio" name="menu" id="chkbox2" class="fileset-menu-checkbox">
+                        <ul class="menu">
+                            <li class="fileset-menu-item">編集する</li>
+                            <li class="fileset-menu-item">削除</li>
+                            <li class="fileset-menu-item">開き方を指定する</li>
+                            <li class="fileset-menu-item">パスをコピーする</li>
+                            <li class="fileset-menu-item">ファイルを開く</li>
+                            <li class="fileset-menu-item">親フォルダを開く</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tags">
+                    <p class="tag">NSFW</p>
+                    <p class="tag">Game</p>
+                </div>
+            </li>
+            <li id="special-element">
+                <button type="button" id="add-new-file">
+                    <img src="assets/add-new-file.svg" alt="Click me to add new file to your fileset!">
+                </button>
+            </li>
+        </ul>
+    </div>
+</body>
+
+</html>
