@@ -1,0 +1,281 @@
+.inactive {
+    display: none;
+}
+
+.fileset-appearance {
+    border: 1px solid rgb(229, 229, 229);
+    background-color: rgb(255, 255, 255);
+    margin-bottom: -1px;
+
+    .fileset-header {
+        position: relative;
+        $padding-size: 5px;
+        justify-content: space-between;
+        align-items: center;
+        padding: $padding-size;
+        width: calc(100% - 2 * #{$padding-size});
+        border-bottom: 1px solid rgb(229, 229, 229);
+
+        * {
+            min-width: 0;
+        }
+
+        .fileset-identifiers {
+            max-width: calc(100% - 4em);
+
+            * {
+                overflow-x: hidden;
+                white-space: nowrap;
+            }
+
+            .fileset-name {
+                flex-shrink: 0;
+                margin-top: 0.2em;
+                margin-bottom: 0.5em;
+                margin-left: 0.5em;
+                width: 100%;
+                border-bottom: 1px solid gray;
+            }
+
+            .fileset-path {
+                font-size: 0.9em;
+                margin-bottom: 0.2em;
+                margin-top: 0;
+                margin-left: 0.5em;
+                color: rgb(100, 100, 100);
+                width: 100%;
+            }
+        }
+
+        .fileset-menu-wrapper {
+            position: absolute;
+            top: 0;
+            right: 0;
+            height: 100%;
+            // 20%~40% 20em
+            width: calc(min(max(20em, 20%), 40%));
+            user-select: none;
+
+            label {
+                position: absolute;
+                top: 45%;
+                right: 0;
+                margin-right: 0.5em;
+                transform: translateY(-60%);
+            }
+
+            .fileset-menu-checkbox,
+            .menu {
+                display: none;
+            }
+
+            .fileset-menu-checkbox:checked+.menu {
+                position: absolute;
+                top: 0;
+                right: 0;
+                display: block;
+                padding-inline-start: 0;
+                z-index: 1;
+                border: 1px solid rgb(229, 229, 229);
+                border-top: none;
+                border-right: none;
+                border-radius: 0 0 0 0.5em;
+                background-color: white;
+
+                .fileset-menu-checkbox {
+                    display: none;
+
+                    &:checked~.menu {
+                        display: block;
+                    }
+                }
+
+                .fileset-menu-item {
+                    color: black;
+                    padding: 12px 16px;
+                    text-decoration: none;
+                    display: block;
+
+                    &:hover {
+                        background-color: #f1f1f1;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#fileset-editor-container {
+    @extend .fileset-appearance;
+    margin-bottom: 4em;
+    margin-left: 40px;
+    width: 80vw;
+    position: relative;
+
+    input,
+    button,
+    img {
+        cursor: pointer;
+    }
+
+    input {
+        cursor: text;
+    }
+
+    content {
+        height: 4.2em;
+    }
+
+    #bottom-area {
+        background-color: #eaeaea;
+        display: flex;
+        align-content: center;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        padding-left: 5px;
+        padding-right: 5px;
+        height: 1.8em;
+
+        img {
+            display: block;
+            margin: auto;
+
+            &:hover {
+                cursor: pointer;
+            }
+        }
+
+        #tag-button:hover {
+            filter: brightness(0.95);
+        }
+    }
+
+    #tag-area {
+        height: 3em;
+        width: calc(80vw - 1em);
+        flex-wrap: nowrap;
+        overflow-x: scroll;
+        overflow-y: visible;
+        white-space: nowrap;
+        position: absolute;
+        padding-bottom: 0.3em;
+        top: 6.5em;
+    }
+}
+
+#fileset-editor {
+    input {
+        display: block;
+        border: 1px solid rgb(0, 0, 0);
+    }
+
+    input:focus {
+        outline: none;
+        border: 1px solid rgb(0, 0, 0);
+        background-color: seashell;
+    }
+
+    #editing-fileset-identifiers {
+
+        #fileset-name-group,
+        #fileset-path-group {
+            width: 100%;
+        }
+
+        input {
+            display: block;
+            box-sizing: border-box;
+            width: 100%;
+            height: 2em;
+            padding: 0.5em;
+        }
+
+        #fileset-path-group .flex-wrapper {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            flex-direction: row;
+            $button-size: calc(min(5.5em, 20%));
+
+            input {
+                width: calc(100% - #{$button-size} - 0.5em);
+            }
+
+            button {
+                display: block;
+                width: $button-size;
+                height: 2em;
+                padding: none;
+                padding-block: none;
+                padding-inline: none;
+                margin: 0.5em auto;
+                align-content: center;
+                justify-content: center;
+                cursor: pointer;
+            }
+        }
+    }
+
+    .tags {
+        .tag {
+            max-width: calc(min(100%, 21.4em));
+
+            .dynamically-sizing {
+                text-overflow: clip;
+                min-width: 1em;
+                width: 1em;
+                max-width: calc(min(100%, 20em));
+            }
+        }
+    }
+}
+
+#filesets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    flex-direction: column;
+    list-style-type: none;
+    width: 80vw;
+    position: relative;
+
+    >* {
+        width: 80vw;
+    }
+
+    .fileset {
+        @extend .fileset-appearance;
+
+        &:hover {
+            background-color: rgba(251, 251, 251, 0.678);
+            cursor: pointer;
+        }
+    }
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-content: flex-start;
+    padding: 0.5em;
+    width: calc(100% - 1em);
+    border-bottom: 1px solid rgb(229, 229, 229);
+
+    .tag {
+        margin: 0.2em;
+        padding: 0.2em;
+        border: 1px solid rgb(229, 229, 229);
+        border-radius: 0.2em;
+        background-color: rgb(231, 231, 231);
+        font-size: 0.8em;
+        font-weight: bold;
+        color: rgb(27, 27, 27);
+        cursor: pointer;
+    }
+
+    .tag:hover {
+        background-color: rgb(220, 219, 219);
+    }
+}

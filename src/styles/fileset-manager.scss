@@ -1,0 +1,57 @@
+#fileset-manager {
+    font:
+        1em Arial,
+        sans-serif;
+    width: 50%;
+    font-weight: normal;
+    margin: 0 auto;
+    table-layout: fixed;
+    border-collapse: collapse;
+    border: 2px solid #000;
+
+    th {
+        font-weight: normal;
+    }
+
+    th:nth-child(3),
+    td:nth-child(3) {
+        border-right: 1px solid #000;
+        text-overflow: clip;
+        padding: 0;
+    }
+
+    th,
+    td {
+        padding: 0.5em;
+    }
+
+    .select:hover,
+    tr.selected {
+        cursor: pointer;
+        background-color: rgba(0, 0, 0, 0.03);
+
+    }
+
+    thead tr {
+
+        border-bottom: 2px solid #000;
+        text-align: center;
+    }
+
+    tbody {
+        tr:not(:last-child) {
+            border-bottom: 1px solid #000;
+        }
+
+        td {
+
+            height: 30px;
+            padding-left: 1em;
+            padding-right: 0.5em;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            overflow: hidden;
+            text-align: left;
+        }
+    }
+}

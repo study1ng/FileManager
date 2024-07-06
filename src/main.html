@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="main">
+        <div id="fileset-editor-container">
+            <div class="cover hidden">
+                Add new fileset
+            </div>
+            <div class="content" id="fileset-editor">
+                <div id="editing-fileset-identifiers" class="fileset-header">
+                    <div id="fileset-name-group" class="fileset-name">
+                        <input type="text" placeholder="名前" name="fileset-name" title="fileset-name">
+                    </div>
+                    <div id="fileset-path-group" class="fileset-path">
+                        <div class="flex-wrapper">
+                            <input type="text" placeholder="パス" name="fileset-path" title="file">
+                            <button type="button">
+                                Browse
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-area">
+                <div class="bottom-button" id="tag-button" aria-label="button to edit tags for fileset">
+                    <img src="assets/svg/tag.svg" alt="change its tag">
+                </div>
+                <div class="bottom-button" id="add-button" aria-label="button to add fileset">
+                    <img src="assets/svg/rectangle.svg" alt="click here to add new fileset">
+                    <img class="hidden" src="assets/svg/checkbox.svg" alt="click here to add new file">
+                </div>
+            </div>
+            <div class="tags hidden" id="tag-area">
+                <p class="tag">Programming</p>
+                <p class="tag">Libraries</p>
+                <p class="tag">NSFW</p>
+                <p class="tag">Game</p>
+                <p class="tag">AndSome</p>
+            </div>
+        </div>
+        <ul id="filesets">
+            <li class="fileset">
+                <div class="fileset-header">
+                    <div class="fileset-identifiers">
+                        <p class="fileset-name">Python Libs</p>
+                        <p class="fileset-path">C:/Users/UserName/AppData/Local/Programs/Python/Python311/python.exe</p>
+                    </div>
+                    <div class="fileset-menu-wrapper">
+                        <label for="chkbox1">...</label>
+                        <input type="radio" name="menu" id="chkbox1" class="fileset-menu-checkbox">
+                        <ul class="menu">
+                            <li class="fileset-menu-item">編集する</li>
+                            <li class="fileset-menu-item">削除</li>
+                            <li class="fileset-menu-item">開き方を指定する</li>
+                            <li class="fileset-menu-item">パスをコピーする</li>
+                            <li class="fileset-menu-item">ファイルを開く</li>
+                            <li class="fileset-menu-item">親フォルダを開く</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tags">
+                    <p class="tag">Programming</p>
+                    <p class="tag">Libraries</p>
+                </div>
+            </li>
+            <li class="fileset">
+                <div class="fileset-header">
+                    <div class="fileset-identifiers">
+                        <p class="fileset-name">Private somethings</p>
+                        <p class="fileset-path">
+                            C:/Users/UserName/for-school/Advanced-chemistry/reports/1/pdfs/hidden-folder/games/hogehoge/hogehoge.exe
+                        </p>
+                    </div>
+                    <div class="fileset-menu-wrapper">
+                        <label for="chkbox2">...</label>
+                        <input type="radio" name="menu" id="chkbox2" class="fileset-menu-checkbox">
+                        <ul class="menu">
+                            <li class="fileset-menu-item">編集する</li>
+                            <li class="fileset-menu-item">削除</li>
+                            <li class="fileset-menu-item">開き方を指定する</li>
+                            <li class="fileset-menu-item">パスをコピーする</li>
+                            <li class="fileset-menu-item">ファイルを開く</li>
+                            <li class="fileset-menu-item">親フォルダを開く</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tags">
+                    <p class="tag">NSFW</p>
+                    <p class="tag">Game</p>
+                </div>
+            </li>
+        </ul>
+    </div>
+    <script defer>
+        function dynamicallySizing() {
+            if (this.value === "") {
+                this.style.width = null;
+                return;
+            }
+            let p = document.createElement("p");
+            p.style.fontSize = window.getComputedStyle(this).fontSize;
+            p.style.fontFamily = window.getComputedStyle(this).fontFamily;
+            p.style.padding = "0px";
+            p.style.margin = "0px";
+            p.style.border = "0px";
+            p.style.outline = "0px";
+            p.style.width = "fit-content";
+            p.textContent = this.value;
+            document.body.appendChild(p);
+            this.style.width = p.clientWidth + "px";
+            document.body.removeChild(p);
+        }
+
+        document.querySelectorAll(".dynamically-sizing").forEach((element) => {
+            element.addEventListener("input", dynamicallySizing);
+        });
+
+        document.querySelectorAll(".fileset-menu-checkbox").forEach((element) => {
+            element.addEventListener("change", () => {
+                if (element.checked) {
+                    function disable() {
+                        element.checked = false;
+                        document.querySelector("html").removeEventListener("click", disable);
+                    }
+                    document.querySelector("html").addEventListener("click", disable);
+                }
+            });
+        });
+        document.querySelector("#add-button").addEventListener("mouseover", () => {
+            document.querySelectorAll("#add-button img").forEach((element) => {
+                element.classList.toggle("hidden");
+            });
+        });
+        document.querySelector("#add-button").addEventListener("mouseout", () => {
+            document.querySelectorAll("#add-button img").forEach((element) => {
+                element.classList.toggle("hidden");
+            });
+        });
+        document.querySelector("#tag-button").addEventListener("click", () => {
+            document.querySelector("#tag-area").classList.toggle("hidden");
+        });
+        // ホイールで横スクロール
+        document.querySelector("#tag-area").addEventListener("mousewheel", e => {
+            if (e.deltaX === 0) {
+                e.stopPropagation()
+                e.preventDefault()
+                document.querySelector("#tag-area").scrollBy(e.deltaY, 0)
+            }
+        })
+    </script>
+</body>
+
+</html>

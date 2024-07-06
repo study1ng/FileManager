@@ -1,0 +1,105 @@
+#tab-container {
+    overflow: hidden;
+
+
+    #login-tab,
+    #register-tab {
+        position: fixed;
+        width: 89.8vw;
+        left: 4vw;
+        justify-content: center;
+        align-items: center;
+        background-color: #f2f2f2;
+        /*cursor: pointer;*/
+        border: 0.1vw solid #000;
+        padding: 1vw;
+        border-radius: 10px 10px 0 0;
+        overflow-y: hidden;
+        height: 85vh;
+
+
+        .button-wrapper {
+            display: flex;
+            justify-content: space-between;
+            margin: 0.5vh auto;
+            height: 8vh;
+        }
+
+        .button-wrapper button {
+            background-color: transparent;
+            cursor: pointer;
+            height: 60%;
+            outline: 2px;
+            appearance: none;
+            margin: auto;
+        }
+
+        #login-main {
+            height: 87vh;
+
+            #login-password-group {
+                display: none;
+            }
+
+        }
+
+        .main {
+
+            .group {
+                display: flex;
+                flex-direction: column;
+                margin: 1vh auto;
+                width: 55%;
+
+                label {
+                    font: 0.8em Arial, sans-serif;
+                    font-weight: bold;
+                    color: rgba(0, 0, 0, 0.7);
+                }
+
+                .msg {
+                    font: 0.8em Arial, sans-serif;
+                    margin: 0.5vh 0;
+                }
+
+            }
+
+            #password-group {
+                display: none;
+            }
+
+        }
+
+
+    }
+
+    .visible-tab {
+        top: 3vh;
+        z-index: 0;
+    }
+
+    .hidden-tab {
+        top: 90vh;
+        z-index: 1;
+        cursor: grab;
+    }
+
+}
+
+.updown {
+    animation-name: updown;
+    animation-duration: 0.3s;
+    animation-iteration-count: 4;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+
+@keyframes updown {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
