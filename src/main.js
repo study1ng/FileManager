@@ -1,6 +1,6 @@
 const { invoke } = window.__TAURI__.tauri;
 import { setupTabHookHovering, setupTabDragging } from "./js/tabControl.js";
-import { setUpAddingFilesetButton, makeFileset } from "./js/mainDisplay.js";
+import { makeFileset } from "./js/mainDisplay.js";
 let filesetData;
 let selectedFileSet = null;
 let passwordCheckBox;
@@ -59,6 +59,7 @@ function makeFileSetManagerTr(prop) {
     let newtd = document.createElement("td");
     let checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
+    checkbox.setAttribute("name", prop + "chk");
     newtd.appendChild(checkbox);
     newtr.appendChild(newtd);
 
@@ -81,21 +82,11 @@ function makeFileSetManagerTr(prop) {
 function initFilesets(name, password) {
     let filesets = document.querySelector("#filesets");
     filesets.innerHTML = "";
-    invoke("read_filesets", {filesetManager: filesetData, name: name, password: password}).then((result) => {
+    invoke("read_filesets", { filesetManager: filesetData, name: name, password: password }).then((result) => {
         for (let fileset of result) {
             filesets.appendChild(makeFileset(fileset.name, fileset.path));
         }
     });
-    let li = document.createElement("li");
-    li.id = "special-element";
-    li.innerHTML = `
-    <button type="button" id="add-new-file">
-        <img src="assets/add-new-file.svg" alt="Click me to add new file to your fileset!">
-    </button>`
-    filesets.appendChild(li);
-
-    setUpAddingFilesetButton();
-
 }
 
 function setFileSetManager() {

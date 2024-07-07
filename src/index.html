@@ -69,8 +69,8 @@
                     </tbody>
                 </table>
                 <div class="group" id="login-password-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="login-password" name="password" />
+                    <label>Password
+                        <input type="password" id="login-password" name="password" /></label>
                     <p class="msg"></p>
                 </div>
                 <div class="button-wrapper">
@@ -84,17 +84,17 @@
             </div>
             <div id="register-main" class="main">
                 <div class="group" id="fileset-name-group">
-                    <label for="fileset-name">Fileset name</label>
-                    <input type="text" id="fileset-name" name="fileset-name" />
+                    <label>Fileset name
+                        <input type="text" id="fileset-name" name="fileset-name" /></label>
                     <p class="msg"></p>
                 </div>
                 <div class="group" id="need-password-group">
-                    <label for="need-password">Need password?</label>
-                    <input type="checkbox" name="need-password" id="need-password" />
+                    <label>Need password?
+                        <input type="checkbox" name="need-password" id="need-password" /></label>
                 </div>
                 <div class="group" id="password-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="registration-password" name="password" />
+                    <label>Password
+                        <input type="password" id="registration-password" name="password" /></label>
                     <p class="msg"></p>
                 </div>
                 <div class="button-wrapper">
@@ -105,6 +105,42 @@
     </div>
 
     <div id="main" class="inactive">
+        <div id="fileset-editor-container">
+            <div class="cover hidden">
+                Add new fileset
+            </div>
+            <div class="content" id="fileset-editor">
+                <div id="editing-fileset-identifiers" class="fileset-header">
+                    <div id="fileset-name-group" class="fileset-name">
+                        <input type="text" placeholder="名前" name="fileset-name" title="fileset-name">
+                    </div>
+                    <div id="fileset-path-group" class="fileset-path">
+                        <div class="flex-wrapper">
+                            <input type="text" placeholder="パス" name="fileset-path" title="file">
+                            <button type="button">
+                                Browse
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="bottom-area">
+                <div class="bottom-button" id="tag-button" aria-label="button to edit tags for fileset">
+                    <img src="assets/svg/tag.svg" alt="change its tag">
+                </div>
+                <div class="bottom-button" id="add-button" aria-label="button to add fileset">
+                    <img src="assets/svg/rectangle.svg" alt="click here to add new fileset">
+                    <img class="hidden" src="assets/svg/checkbox.svg" alt="click here to add new file">
+                </div>
+            </div>
+            <div class="tags hidden" id="tag-area">
+                <p class="tag">Programming</p>
+                <p class="tag">Libraries</p>
+                <p class="tag">NSFW</p>
+                <p class="tag">Game</p>
+                <p class="tag">AndSome</p>
+            </div>
+        </div>
         <ul id="filesets">
             <li class="fileset">
                 <div class="fileset-header">
@@ -156,13 +192,65 @@
                     <p class="tag">Game</p>
                 </div>
             </li>
-            <li id="special-element">
-                <button type="button" id="add-new-file">
-                    <img src="assets/add-new-file.svg" alt="Click me to add new file to your fileset!">
-                </button>
-            </li>
         </ul>
     </div>
+    <script defer>
+        function dynamicallySizing() {
+            if (this.value === "") {
+                this.style.width = null;
+                return;
+            }
+            let p = document.createElement("p");
+            p.style.fontSize = window.getComputedStyle(this).fontSize;
+            p.style.fontFamily = window.getComputedStyle(this).fontFamily;
+            p.style.padding = "0px";
+            p.style.margin = "0px";
+            p.style.border = "0px";
+            p.style.outline = "0px";
+            p.style.width = "fit-content";
+            p.textContent = this.value;
+            document.body.appendChild(p);
+            this.style.width = p.clientWidth + "px";
+            document.body.removeChild(p);
+        }
+
+        document.querySelectorAll(".dynamically-sizing").forEach((element) => {
+            element.addEventListener("input", dynamicallySizing);
+        });
+
+        document.querySelectorAll(".fileset-menu-checkbox").forEach((element) => {
+            element.addEventListener("change", () => {
+                if (element.checked) {
+                    function disable() {
+                        element.checked = false;
+                        document.querySelector("html").removeEventListener("click", disable);
+                    }
+                    document.querySelector("html").addEventListener("click", disable);
+                }
+            });
+        });
+        document.querySelector("#add-button").addEventListener("mouseover", () => {
+            document.querySelectorAll("#add-button img").forEach((element) => {
+                element.classList.toggle("hidden");
+            });
+        });
+        document.querySelector("#add-button").addEventListener("mouseout", () => {
+            document.querySelectorAll("#add-button img").forEach((element) => {
+                element.classList.toggle("hidden");
+            });
+        });
+        document.querySelector("#tag-button").addEventListener("click", () => {
+            document.querySelector("#tag-area").classList.toggle("hidden");
+        });
+        // ホイールで横スクロール
+        document.querySelector("#tag-area").addEventListener("mousewheel", e => {
+            if (e.deltaX === 0) {
+                e.stopPropagation()
+                e.preventDefault()
+                document.querySelector("#tag-area").scrollBy(e.deltaY, 0)
+            }
+        })
+    </script>
 </body>
 
 </html>
