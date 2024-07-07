@@ -118,10 +118,6 @@
     img {
         display: block;
         margin: auto;
-
-        &:hover {
-            cursor: pointer;
-        }
     }
 }
 
@@ -136,7 +132,7 @@
 
     input,
     button,
-    img {
+    .bottom-button {
         cursor: pointer;
     }
 
@@ -169,7 +165,7 @@
         white-space: nowrap;
         position: absolute;
         padding-bottom: 0.3em;
-        top: 6.5em;
+        top: 7em;
         $tagbg: #77AAC9;
         $tagfg: #2D2440;
 

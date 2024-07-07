@@ -1,6 +1,6 @@
 const { invoke } = window.__TAURI__.tauri;
 import { setupTabHookHovering, setupTabDragging } from "./js/tabControl.js";
-import { makeFileset } from "./js/mainDisplay.js";
+import { makeFileset, setupFilesetEditor } from "./js/mainDisplay.js";
 let filesetData;
 let selectedFileSet = null;
 let passwordCheckBox;
@@ -122,6 +122,7 @@ async function login(event) {
         document.querySelector("#login-password").value = "";
         alert(result);
     }
+    setupFilesetEditor();
 }
 
 
@@ -144,6 +145,7 @@ async function register(event) {
         document.querySelector("#login-password").value = "";
         alert(result);
     }
+    setupFilesetEditor();
 }
 
 
@@ -157,7 +159,6 @@ window.addEventListener('DOMContentLoaded', async () => {
 
     setupTabHookHovering();
     setupTabDragging();
-
     let registerButton = document.querySelector("#registration-button");
     registerButton.addEventListener("click", register);
     passwordCheckBox.addEventListener("change", (event) => {

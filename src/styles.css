@@ -151,9 +151,6 @@
   display: block;
   margin: auto;
 }
-.bottom-area-design img:hover, #fileset-editor-container #bottom-area img:hover, #fileset-editor-container .cover img:hover {
-  cursor: pointer;
-}
 
 #fileset-editor-container {
   margin-bottom: 4em;
@@ -162,7 +159,7 @@
 }
 #fileset-editor-container input,
 #fileset-editor-container button,
-#fileset-editor-container img {
+#fileset-editor-container .bottom-button {
   cursor: pointer;
 }
 #fileset-editor-container input {

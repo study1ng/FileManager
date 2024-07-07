@@ -48,5 +48,57 @@ export function makeFileset(name, path, tags, opener) {
 }
 
 function validateFilesetEditor() {
-    let fileSetEditor = document.querySelector()
+    let fileSetEditor = document.querySelector("#fileset-editor");
+    let nameField = fileSetEditor.querySelector(".fileset-name input");
+    let pathField = fileSetEditor.querySelector(".fileset-path input");
+    if (nameField.value === "") {
+        return "name";
+    }
+    if (pathField.value === "") {
+        return "path";
+    }
+    return "ok";
 }
+
+export function setupFilesetEditor() {
+    let filesetEditor = document.querySelector("#fileset-editor");
+    let addButton = filesetEditor.querySelector("#add-button");
+    console.log("setupFilesetEditor is called");
+    addButton.addEventListener("mouseenter", () => {
+        console.log(validateFilesetEditor());
+        if (validateFilesetEditor() !== "ok") {
+            addButton.style.cursor = "not-allowed";
+        }
+        addButton.addEventListener("mouseleave", () => {
+            addButton.style.cursor = null;
+            addButton.removeEventListener("mouseleave", () => { });
+        });
+    })
+
+    let browseButton = document.querySelector(".fileset-path button");
+    browseButton.addEventListener("click", async () => {
+        let path = await open({ directory: false, multiple: false });
+        document.querySelector(".fileset-path input").value = path;
+    });
+
+    let filesets = document.querySelector("#filesets");
+    addButton.addEventListener("click", async () => {
+        let validation = validateFilesetEditor();
+        if (validation !== "ok") {
+            alert(`${validation} is empty`);
+            return;
+        }
+        let name = filesetEditor.querySelector(".fileset-name input").value;
+        let path = filesetEditor.querySelector(".fileset-path input").value;
+        let tags = [];
+        for (let tag of filesetEditor.querySelectorAll(".tag.selected")) {
+            tags.push(tag.textContent);
+        }
+        filesets.appendChild(makeFileset(name, path, tags));
+        filesetEditor.querySelector(".fileset-name input").value = "";
+        filesetEditor.querySelector(".fileset-path input").value = "";
+        for (let tag of filesetEditor.querySelectorAll(".tag.selected")) {
+            tag.classList.remove("selected");
+        }
+    });
+} 
