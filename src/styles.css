@@ -137,11 +137,28 @@
   background-color: #f1f1f1;
 }
 
+.bottom-area-design, #fileset-editor-container #bottom-area, #fileset-editor-container .cover {
+  background-color: #eaeaea;
+  display: flex;
+  align-content: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  padding-left: 5px;
+  padding-right: 5px;
+  height: 1.8em;
+}
+.bottom-area-design img, #fileset-editor-container #bottom-area img, #fileset-editor-container .cover img {
+  display: block;
+  margin: auto;
+}
+.bottom-area-design img:hover, #fileset-editor-container #bottom-area img:hover, #fileset-editor-container .cover img:hover {
+  cursor: pointer;
+}
+
 #fileset-editor-container {
   margin-bottom: 4em;
   margin-left: 40px;
   width: 80vw;
-  position: relative;
 }
 #fileset-editor-container input,
 #fileset-editor-container button,
@@ -153,23 +170,6 @@
 }
 #fileset-editor-container content {
   height: 4.2em;
-}
-#fileset-editor-container #bottom-area {
-  background-color: #eaeaea;
-  display: flex;
-  align-content: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  padding-left: 5px;
-  padding-right: 5px;
-  height: 1.8em;
-}
-#fileset-editor-container #bottom-area img {
-  display: block;
-  margin: auto;
-}
-#fileset-editor-container #bottom-area img:hover {
-  cursor: pointer;
 }
 #fileset-editor-container #bottom-area #tag-button:hover {
   filter: brightness(0.95);
@@ -185,11 +185,21 @@
   padding-bottom: 0.3em;
   top: 6.5em;
 }
-#fileset-editor-container #tag-area ::-webkit-scrollbar {
-  height: 0.2em;
+#fileset-editor-container #tag-area .tag {
+  background-color: #77AAC9;
+  color: #2D2440;
 }
-#fileset-editor-container #tag-area ::-webkit-scrollbar-corner {
-  display: none;
+#fileset-editor-container #tag-area .tag:hover {
+  background-color: #5293bb;
+  color: #16121f;
+}
+#fileset-editor-container #tag-area .tag.selected {
+  background-color: #2D2440;
+  color: #77AAC9;
+}
+#fileset-editor-container #tag-area .tag.selected:hover {
+  background-color: #443661;
+  color: #9cc1d7;
 }
 
 #fileset-editor input {
@@ -251,7 +261,6 @@
   flex-direction: column;
   list-style-type: none;
   width: 80vw;
-  position: relative;
 }
 #filesets > * {
   width: 80vw;
@@ -379,4 +388,16 @@
 }
 .hidden {
   display: none !important;
+}
+
+.non-selectable {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
+.selectable {
+  -webkit-user-select: text;
+     -moz-user-select: text;
+          user-select: text;
 }/*# sourceMappingURL=styles.css.map */

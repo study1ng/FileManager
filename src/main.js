@@ -57,6 +57,7 @@ function makeFileSetManagerTr(prop) {
     newtr.addEventListener("click", beSelected);
 
     let newtd = document.createElement("td");
+    newtd.classList.add("non-selectable")
     let checkbox = document.createElement("input");
     checkbox.setAttribute("type", "checkbox");
     checkbox.setAttribute("name", prop + "chk");
@@ -68,10 +69,12 @@ function makeFileSetManagerTr(prop) {
     newtr.appendChild(newtd);
 
     newtd = document.createElement("td");
+    newtd.classList.add("non-selectable");
     newtd.textContent = filesetData[prop]["need_password"] ? "🔏" : "";
     newtr.appendChild(newtd);
 
     newtd = document.createElement("td");
+    newtd.classList.add("non-selectable");
     let datetime = new Date(filesetData[prop]["last_accessed"]);
     newtd.textContent = getDateDiffString(datetime);
     newtr.appendChild(newtd);

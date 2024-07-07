@@ -1,6 +1,5 @@
 const { invoke } = window.__TAURI__.tauri;
 const { open } = window.__TAURI__.dialog;
-let addingFilesetButton;
 let current_editing = null;
 
 
@@ -46,4 +45,8 @@ export function makeFileset(name, path, tags, opener) {
     }
 
     return e;
+}
+
+function validateFilesetEditor() {
+    let fileSetEditor = document.querySelector()
 }

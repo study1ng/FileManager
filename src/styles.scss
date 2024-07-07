@@ -5,4 +5,11 @@
 .hidden {
     display: none !important;
 }
-    
+ 
+.non-selectable {
+    user-select: none;
+}
+
+.selectable {
+    user-select: text;
+}

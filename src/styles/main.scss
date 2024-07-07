@@ -105,12 +105,34 @@
     }
 }
 
+.bottom-area-design {
+    background-color: #eaeaea;
+    display: flex;
+    align-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding-left: 5px;
+    padding-right: 5px;
+    height: 1.8em;
+
+    img {
+        display: block;
+        margin: auto;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
+
 #fileset-editor-container {
     @extend .fileset-appearance;
     margin-bottom: 4em;
     margin-left: 40px;
     width: 80vw;
-    position: relative;
+    // position: absolute;
+    // top: 0.5em;
+    // left: 40px;
 
     input,
     button,
@@ -122,28 +144,16 @@
         cursor: text;
     }
 
+    .cover {
+        @extend .bottom-area-design;
+    }
+
     content {
         height: 4.2em;
     }
 
     #bottom-area {
-        background-color: #eaeaea;
-        display: flex;
-        align-content: center;
-        justify-content: space-between;
-        flex-wrap: wrap;
-        padding-left: 5px;
-        padding-right: 5px;
-        height: 1.8em;
-
-        img {
-            display: block;
-            margin: auto;
-
-            &:hover {
-                cursor: pointer;
-            }
-        }
+        @extend .bottom-area-design;
 
         #tag-button:hover {
             filter: brightness(0.95);
@@ -160,6 +170,28 @@
         position: absolute;
         padding-bottom: 0.3em;
         top: 6.5em;
+        $tagbg: #77AAC9;
+        $tagfg: #2D2440;
+
+        .tag {
+            background-color: $tagbg;
+            color: $tagfg;
+        }
+
+        .tag:hover {
+            background-color: darken($tagbg, 10%);
+            color: darken($tagfg, 10%);
+        }
+
+        .tag.selected {
+            background-color: $tagfg;
+            color: $tagbg;
+        }
+
+        .tag.selected:hover {
+            background-color: lighten($tagfg, 10%);
+            color: lighten($tagbg, 10%);
+        }
     }
 }
 
@@ -238,7 +270,9 @@
     flex-direction: column;
     list-style-type: none;
     width: 80vw;
-    position: relative;
+    // position: absolute;
+    // top: 8.7em;
+    // left: 40px;
 
     >* {
         width: 80vw;

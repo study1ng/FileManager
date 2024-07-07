@@ -11,10 +11,10 @@
 <body>
     <div id="main">
         <div id="fileset-editor-container">
-            <div class="cover hidden">
+            <div class="cover non-selectable">
                 Add new fileset
             </div>
-            <div class="content" id="fileset-editor">
+            <div class="content hidden" id="fileset-editor">
                 <div id="editing-fileset-identifiers" class="fileset-header">
                     <div id="fileset-name-group" class="fileset-name">
                         <input type="text" placeholder="名前" name="fileset-name" title="fileset-name">
@@ -40,7 +40,7 @@
             </div>
             <div class="tags hidden" id="tag-area">
                 <p class="tag">Programming</p>
-                <p class="tag">Libraries</p>
+                <p class="tag selected">Libraries</p>
                 <p class="tag">NSFW</p>
                 <p class="tag">Game</p>
                 <p class="tag">AndSome</p>
@@ -155,6 +155,7 @@
                 document.querySelector("#tag-area").scrollBy(e.deltaY, 0)
             }
         })
+        document.querySelector("#fileset-editor-container").addEventListener
     </script>
 </body>
 
