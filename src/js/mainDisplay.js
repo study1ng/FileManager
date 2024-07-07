@@ -19,7 +19,7 @@ export function makeFileset(name, path, tags, opener) {
         <p class="fileset-name">${name}</p>
         <p class="fileset-path">${path}</p>
     </div>
-    <div class="fileset-menu-wrapper">
+    <div class="fileset-menu-wrapper non-selectable">
         <label for="chkbox1">...</label>
         <input type="radio" name="menu" id="chkbox1" class="fileset-menu-checkbox">
         <ul class="menu">
@@ -32,7 +32,7 @@ export function makeFileset(name, path, tags, opener) {
         </ul>
     </div>
 </div>
-<div class="tags">
+<div class="tags non-selectable">
 </div>
 `;
     if (tags !== undefined) {
