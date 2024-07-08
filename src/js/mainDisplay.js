@@ -46,11 +46,38 @@ export function makeFileset(name, path, tags, opener) {
     }
     let element = e.querySelector(".fileset-menu-checkbox");
     element.addEventListener("change", () => {
-        function disable() {
+        function clicked(event) {
+            let target = event.target;
+            if (target.classList.contains("fileset-menu-item")) {
+                switch (target.textContent) {
+                    case "編集する":
+                        console.log("edit");
+                        break;
+                    case "削除":
+                        console.log("delete");
+                        break;
+                    case "開き方を指定する":
+                        console.log("opener");
+                        break;
+                    case "パスをコピーする":
+                        if (navigator.clipboard) {
+                            navigator.clipboard.writeText(path);
+                        }
+                        break;
+                    case "ファイルを開く":
+                        console.log("open");
+                        break;
+                    case "親フォルダを開く":
+                        console.log("open parent");
+                        break;
+                    default:
+                        break;
+                }
+            }
             element.checked = false;
-            document.removeEventListener("click", disable);
+            document.removeEventListener("click", clicked);
         }
-        document.addEventListener("click", disable);
+        document.addEventListener("click", clicked);
     });
     return e;
 }
