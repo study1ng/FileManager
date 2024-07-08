@@ -1,10 +1,12 @@
 const { invoke } = window.__TAURI__.tauri;
+const { emit, listen } = window.__TAURI__.event;
 import { setupTabHookHovering, setupTabDragging } from "./js/tabControl.js";
 import { makeFileset, setupFilesetEditor } from "./js/mainDisplay.js";
 let filesetData;
 let selectedFileSet = null;
 let passwordCheckBox;
 let passwordGroup;
+let loginData = null;
 
 
 
@@ -87,7 +89,7 @@ function initFilesets(name, password) {
     filesets.innerHTML = "";
     invoke("read_filesets", { filesetManager: filesetData, name: name, password: password }).then((result) => {
         for (let fileset of result) {
-            filesets.appendChild(makeFileset(fileset.name, fileset.path));
+            filesets.appendChild(makeFileset(fileset.name, fileset.path, fileset.tags, fileset.opener));
         }
     });
 }
@@ -107,6 +109,7 @@ function setFileSetManager() {
 }
 
 async function login(event) {
+
     event.preventDefault();
     console.log("login is called");
     let enteredPassword = document.querySelector("#login-password").value;
@@ -116,15 +119,17 @@ async function login(event) {
     if (result == null) {
         document.querySelector("#tab-container").classList.add("inactive");
         document.querySelector("#main").classList.remove("inactive");
-        initFilesets(selectedFileSet.querySelector("td:nth-child(2)").textContent, enteredPassword);
+        loginData = {
+            "filesetName": selectedFileSet.querySelector("td:nth-child(2)").textContent,
+            "password": enteredPassword
+        };
+        setupMainDisplay();
     }
     else {
         document.querySelector("#login-password").value = "";
         alert(result);
     }
-    setupFilesetEditor();
 }
-
 
 async function register(event) {
     event.preventDefault();
@@ -139,15 +144,18 @@ async function register(event) {
     if (result == null) {
         document.querySelector("#tab-container").classList.add("inactive");
         document.querySelector("#main").classList.remove("inactive");
-        initFilesets(document.querySelector("#fileset-name").value, needPassword ? passwordGroup.querySelector("#registration-password").value : "");
+        loginData = {
+            "filesetName": document.querySelector("#fileset-name").value,
+            "password": needPassword ? passwordGroup.querySelector("#registration-password").value : ""
+        };
+        return true;
     }
     else {
         document.querySelector("#login-password").value = "";
         alert(result);
+        return false;
     }
-    setupFilesetEditor();
 }
-
 
 window.addEventListener('DOMContentLoaded', async () => {
     let loginButton = document.querySelector("#login-button");
@@ -155,12 +163,22 @@ window.addEventListener('DOMContentLoaded', async () => {
     passwordGroup = document.querySelector("#password-group");
     filesetData = await invoke("load_file_set_manager");
     setFileSetManager();
-    loginButton.addEventListener("click", login);
+    loginButton.addEventListener("click", async (event) => {
+        let result = await login(event);
+        if (result) {
+            setupMainDisplay();
+        }
+    });
 
     setupTabHookHovering();
     setupTabDragging();
     let registerButton = document.querySelector("#registration-button");
-    registerButton.addEventListener("click", register);
+    registerButton.addEventListener("click", async (event) => {
+        let result = await register(event);
+        if (result) {
+            setupMainDisplay();
+        }
+    });
     passwordCheckBox.addEventListener("change", (event) => {
         if (event.target.checked) {
             passwordGroup.setAttribute("style", "display: block;");
@@ -170,3 +188,40 @@ window.addEventListener('DOMContentLoaded', async () => {
         }
     });
 });
+
+async function saveFilesets() {
+    invoke("console_log", { message: "save_filesets" });
+    let filesets = document.querySelector("#filesets");
+    let filesetList = [];
+    for (let fileset of filesets.children) {
+        let tagList = [];
+        for (let tag of fileset.querySelectorAll(".tag")) {
+            tagList.push(tag.textContent);
+        }
+        filesetList.push({
+            name: fileset.querySelector(".fileset-name").textContent,
+            path: fileset.querySelector(".fileset-path").textContent,
+            tags: tagList,
+            opener: fileset.opener
+        });
+    }
+    let result = invoke("save_filesets", { filesetManager: filesetData, name: loginData.filesetName, password: loginData.password, filesets: filesetList }).then(
+        (result) => {
+        }, (error) => {
+            invoke("console_log", { message: error });
+        }
+    ).finally(() => {
+        invoke("console_log", { message: "save_filesets ended" });
+    });
+    await result;
+}
+
+function setupMainDisplay() {
+    invoke("console_log", { message: "setupMainDisplay" });
+    initFilesets(loginData.filesetName, loginData.password);
+    setupFilesetEditor();
+    listen("close_window", () => {
+        saveFilesets();
+        emit("close_window");
+    })
+}

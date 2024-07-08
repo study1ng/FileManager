@@ -94,7 +94,7 @@ export function setupFilesetEditor() {
         for (let tag of filesetEditor.querySelectorAll(".tag.selected")) {
             tags.push(tag.textContent);
         }
-        filesets.appendChild(makeFileset(name, path, tags));
+        filesets.appendChild(makeFileset(name, path, tags, ""));
         filesetEditor.querySelector(".fileset-name input").value = "";
         filesetEditor.querySelector(".fileset-path input").value = "";
         for (let tag of filesetEditor.querySelectorAll(".tag.selected")) {

@@ -9,12 +9,12 @@ pub struct Fileset {
     name: String,
     path: String,
     tags: Vec<String>,
-    open_method: String,
+    opener: String,
 }
 
 impl Fileset {
     pub fn open(&self) {
-        Command::new(self.open_method.clone())
+        Command::new(self.opener.clone())
             .arg(self.path.clone())
             .spawn().unwrap();
     }
@@ -40,7 +40,7 @@ pub fn read_filesets(
     let target = String::from_utf8(target).map_err(|_| "Failed to convert fileset file to string")?;
     let target = serde_json::from_str(&target).map_err(|_| "Failed to parse fileset file")?;
 
-    println!("{:?}", target);
+    println!("target: {:?}", target);
     Ok(target)
 }
 
@@ -52,6 +52,7 @@ pub fn save_filesets(
     filesets: Vec<Fileset>,
 ) -> Result<(), String> {
     let target_path = format!("filesets/{}.json", name);
+    println!("saved: {:?}", filesets);
     let target = serde_json::to_string(&filesets).map_err(|_| "Failed to serialize filesets")?;
     let target = crypt::Encrypted::encrypt(
         target.as_bytes(),
