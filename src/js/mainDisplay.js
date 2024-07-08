@@ -7,7 +7,7 @@ let current_editing = null;
 window.addEventListener('DOMContentLoaded', async () => {
 });
 
-
+let number = 0;
 export function makeFileset(name, path, tags, opener) {
     let e = document.createElement("li");
     e.opener = opener;
@@ -20,8 +20,8 @@ export function makeFileset(name, path, tags, opener) {
         <p class="fileset-path">${path}</p>
     </div>
     <div class="fileset-menu-wrapper non-selectable">
-        <label for="chkbox1">...</label>
-        <input type="radio" name="menu" id="chkbox1" class="fileset-menu-checkbox">
+        <label for="chkbox${number}">...</label>
+        <input type="radio" name="menu" id="chkbox${number}" class="fileset-menu-checkbox">
         <ul class="menu">
             <li class="fileset-menu-item">編集する</li>
             <li class="fileset-menu-item">削除</li>
@@ -35,6 +35,7 @@ export function makeFileset(name, path, tags, opener) {
 <div class="tags non-selectable">
 </div>
 `;
+    ++number;
     if (tags !== undefined) {
         for (let tag of tags) {
             let newTag = document.createElement("p");
