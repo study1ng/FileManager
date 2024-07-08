@@ -174,17 +174,6 @@
             element.addEventListener("input", dynamicallySizing);
         });
 
-        document.querySelectorAll(".fileset-menu-checkbox").forEach((element) => {
-            element.addEventListener("change", () => {
-                if (element.checked) {
-                    function disable() {
-                        element.checked = false;
-                        document.querySelector("html").removeEventListener("click", disable);
-                    }
-                    document.querySelector("html").addEventListener("click", disable);
-                }
-            });
-        });
         document.querySelector("#add-button").addEventListener("mouseover", () => {
             document.querySelectorAll("#add-button img").forEach((element) => {
                 element.classList.toggle("hidden");
@@ -215,7 +204,7 @@
             }
         })
         // クリックした位置がcontainer以外ならcoverにhiddenを削除し, contentにhiddenを付与
-        document.querySelector("html").addEventListener("click", (e) => {
+        document.addEventListener("click", (e) => {
             if (!container.contains(e.target)) {
                 if (!container.querySelector(".content").classList.contains("hidden")) {
                     container.querySelector(".cover").classList.remove("hidden");

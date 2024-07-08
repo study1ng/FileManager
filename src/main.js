@@ -223,5 +223,5 @@ function setupMainDisplay() {
     listen("close_window", () => {
         saveFilesets();
         emit("close_window");
-    })
+    });
 }

@@ -43,7 +43,14 @@ export function makeFileset(name, path, tags, opener) {
             e.querySelector(".tags").appendChild(newTag);
         }
     }
-
+    let element = e.querySelector(".fileset-menu-checkbox");
+    element.addEventListener("change", () => {
+        function disable() {
+            element.checked = false;
+            document.removeEventListener("click", disable);
+        }
+        document.addEventListener("click", disable);
+    });
     return e;
 }
 
