@@ -45,34 +45,35 @@ export function makeFileset(name, path, tags, opener) {
         }
     }
     let element = e.querySelector(".fileset-menu-checkbox");
-    element.addEventListener("change", () => {
-        function clicked(event) {
+    element.addEventListener("change", async () => {
+        async function clicked(event) {
             let target = event.target;
             if (target.classList.contains("fileset-menu-item")) {
+                let command = "";
+                let args = { name: name, path: path, opener: opener };
                 switch (target.textContent) {
                     case "編集する":
-                        console.log("edit");
-                        break;
-                    case "削除":
-                        console.log("delete");
-                        break;
-                    case "開き方を指定する":
-                        console.log("opener");
+                        command = "edit";
                         break;
                     case "パスをコピーする":
-                        if (navigator.clipboard) {
-                            navigator.clipboard.writeText(path);
-                        }
+                        command = "copy";
                         break;
                     case "ファイルを開く":
-                        console.log("open");
+                        command = "open";
                         break;
                     case "親フォルダを開く":
-                        console.log("open parent");
+                        command = "open-folder";
+                        break;
+                    case "開き方を指定する":
+                        command = "opener";
+                        break;
+                    case "削除":
+                        e.remove();
                         break;
                     default:
                         break;
                 }
+                await invoke("menu-action", { command: command, args: args })
             }
             element.checked = false;
             document.removeEventListener("click", clicked);
