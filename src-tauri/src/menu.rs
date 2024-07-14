@@ -18,11 +18,30 @@ async fn open_parent_folder(path: String) -> Result<(), String> {
     }
 }
 
+async fn open_file(path: String) -> Result<(), String> {
+    let path = Path::new(&path);
+    if path.exists() && path.is_file() {
+        let mut command = Command::new("powershell");
+        command.arg("Invoke-Item");
+        command.arg(path.to_str().ok_or("Failed to convert path to string")?);
+        command
+            .spawn()
+            .map_err(|error| String::from("Failed to open ") + path.to_str().unwrap() + ": " + &error.to_string())?;
+        Ok(())
+    } else {
+        Err("File does not exist".to_string())
+    }
+}
+
 #[tauri::command]
 pub async fn menu_action(command: String, args: Value) -> Result<Value, String> {
     match command.as_str() {
         "openParent" => {
             open_parent_folder(args["path"].as_str().unwrap().to_string()).await?;
+            Ok(serde_json::json!({}))
+        },
+        "open" => {
+            open_file(args["path"].as_str().unwrap().to_string()).await?;
             Ok(serde_json::json!({}))
         },
         _ => Err(format!("Unknown command: {}", command))

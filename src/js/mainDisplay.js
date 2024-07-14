@@ -75,7 +75,7 @@ export function makeFileset(name, path, tags, opener) {
                     default:
                         break;
                 }
-                invoke("menu_action", { command: command, args: args }).then((result) => {}).catch((error) => {
+                invoke("menu_action", { command: command, args: args }).catch((error) => {
                     console.error(error);
                 });
             }
