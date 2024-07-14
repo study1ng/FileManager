@@ -1,6 +1,6 @@
 // Prevents additional console window on Windows in release, DO NOT REMOVE!!
 #![cfg_attr(not(debug_assertions), windows_subsystem = "windows")]
-use filemanager::{fileset, load, login, registration};
+use filemanager::{fileset, load, login, registration, menu};
 use tauri::Manager;
 use tauri::WindowEvent;
 
@@ -42,7 +42,8 @@ fn main() {
             login::login,
             load::load_file_set_manager,
             fileset::read_filesets,
-            fileset::save_filesets
+            fileset::save_filesets,
+            menu::menu_action
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

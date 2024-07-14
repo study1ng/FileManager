@@ -1,5 +1,7 @@
 const { invoke } = window.__TAURI__.tauri;
 const { open } = window.__TAURI__.dialog;
+const { resolve, basename } = window.__TAURI__.path;
+const { Command } = window.__TAURI__.shell;
 let current_editing = null;
 
 
@@ -62,7 +64,7 @@ export function makeFileset(name, path, tags, opener) {
                         command = "open";
                         break;
                     case "親フォルダを開く":
-                        command = "open-folder";
+                        command = "openParent";
                         break;
                     case "開き方を指定する":
                         command = "opener";
@@ -73,7 +75,9 @@ export function makeFileset(name, path, tags, opener) {
                     default:
                         break;
                 }
-                await invoke("menu-action", { command: command, args: args })
+                invoke("menu_action", { command: command, args: args }).then((result) => {}).catch((error) => {
+                    console.error(error);
+                });
             }
             element.checked = false;
             document.removeEventListener("click", clicked);

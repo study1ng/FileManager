@@ -12,8 +12,33 @@
     "allowlist": {
       "all": false,
       "shell": {
+        "scope": [
+          {
+            "name": "echo",
+            "cmd": "echo",
+            "args": [
+              "\\S+"
+            ]
+          }
+        ],
         "all": false,
-        "open": true
+        "execute": true
+      },
+      "fs": {
+        "all": false,
+        "copyFile": false,
+        "createDir": false,
+        "exists": true,
+        "readDir": false,
+        "readFile": false,
+        "removeDir": false,
+        "removeFile": false,
+        "renameFile": false,
+        "scope": [],
+        "writeFile": false
+      },
+      "path": {
+        "all": true
       },
       "window": {
         "all": false,
