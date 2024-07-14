@@ -5,7 +5,6 @@ const { Command } = window.__TAURI__.shell;
 let current_editing = null;
 
 
-
 window.addEventListener('DOMContentLoaded', async () => {
 });
 
@@ -88,7 +87,7 @@ export function makeFileset(name, path, tags, opener) {
 }
 
 function validateFilesetEditor() {
-    let fileSetEditor = document.querySelector("#fileset-editor");
+    let fileSetEditor = document.querySelector(".fileset-editor");
     let nameField = fileSetEditor.querySelector(".fileset-name input");
     let pathField = fileSetEditor.querySelector(".fileset-path input");
     if (nameField.value === "") {
@@ -101,8 +100,8 @@ function validateFilesetEditor() {
 }
 
 export function setupFilesetEditor() {
-    let filesetEditor = document.querySelector("#fileset-editor");
-    let addButton = filesetEditor.querySelector("#add-button");
+    let filesetEditor = document.querySelector(".fileset-editor");
+    let addButton = filesetEditor.querySelector(".add-button");
     console.log("setupFilesetEditor is called");
     addButton.addEventListener("mouseenter", () => {
         console.log(validateFilesetEditor());

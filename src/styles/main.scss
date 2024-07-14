@@ -121,14 +121,11 @@
     }
 }
 
-#fileset-editor-container {
+.fileset-editor-container {
     @extend .fileset-appearance;
     margin-bottom: 4em;
     margin-left: 40px;
     width: 80vw;
-    // position: absolute;
-    // top: 0.5em;
-    // left: 40px;
 
     input,
     button,
@@ -148,7 +145,7 @@
         height: 4.2em;
     }
 
-    #bottom-area {
+    .bottom-area {
         @extend .bottom-area-design;
 
         #tag-button:hover {
@@ -156,7 +153,7 @@
         }
     }
 
-    #tag-area {
+    .tag-area {
         height: 3em;
         width: calc(80vw - 1em);
         flex-wrap: nowrap;
@@ -191,7 +188,7 @@
     }
 }
 
-#fileset-editor {
+.fileset-editor {
     input {
         display: block;
         border: 1px solid rgb(0, 0, 0);
@@ -203,10 +200,10 @@
         background-color: seashell;
     }
 
-    #editing-fileset-identifiers {
+    .editing-fileset-identifiers {
 
-        #fileset-name-group,
-        #fileset-path-group {
+        .fileset-name-group,
+        .fileset-path-group {
             width: 100%;
         }
 
@@ -218,7 +215,7 @@
             padding: 0.5em;
         }
 
-        #fileset-path-group .flex-wrapper {
+        .fileset-path-group .flex-wrapper {
             display: flex;
             justify-content: space-around;
             align-items: center;

@@ -105,7 +105,7 @@
     </div>
 
     <div id="main" class="inactive">
-        <div id="fileset-editor-container">
+        <div class="fileset-editor-container">
             <div class="cover non-selectable">
                 <div class="bottom-button">
                     <img src="assets/svg/tag.svg">
@@ -115,12 +115,12 @@
                     <img class="hidden" src="assets/svg/checkbox.svg">
                 </div>
             </div>
-            <div class="content hidden" id="fileset-editor">
-                <div id="editing-fileset-identifiers" class="fileset-header">
-                    <div id="fileset-name-group" class="fileset-name">
+            <div class="content hidden fileset-editor" id="">
+                <div id="" class="fileset-header editing-fileset-identifiers">
+                    <div id="" class="fileset-name fileset-name-group">
                         <input type="text" placeholder="名前" name="fileset-name" title="fileset-name">
                     </div>
-                    <div id="fileset-path-group" class="fileset-path">
+                    <div id="" class="fileset-path fileset-path-group">
                         <div class="flex-wrapper">
                             <input type="text" placeholder="パス" name="fileset-path" title="file">
                             <button class="non-selectable" type="button">
@@ -129,16 +129,16 @@
                         </div>
                     </div>
                 </div>
-                <div class="non-selectable" id="bottom-area">
-                    <div class="bottom-button" id="tag-button" aria-label="button to edit tags for fileset">
+                <div class="non-selectable bottom-area" id="">
+                    <div class="bottom-button tag-button" id="" aria-label="button to edit tags for fileset">
                         <img src="assets/svg/tag.svg" alt="change its tag">
                     </div>
-                    <div class="bottom-button" id="add-button" aria-label="button to add fileset">
+                    <div class="bottom-button add-button" id="" aria-label="button to add fileset">
                         <img src="assets/svg/rectangle.svg" alt="click here to add new fileset">
                         <img class="hidden" src="assets/svg/checkbox.svg" alt="click here to add new file">
                     </div>
                 </div>
-                <div class="tags hidden non-selectable" id="tag-area">
+                <div class="tags hidden non-selectable tag-area" id="">
                     <p class="tag">Programming</p>
                     <p class="tag">Libraries</p>
                     <p class="tag">NSFW</p>
@@ -174,28 +174,28 @@
             element.addEventListener("input", dynamicallySizing);
         });
 
-        document.querySelector("#add-button").addEventListener("mouseover", () => {
-            document.querySelectorAll("#add-button img").forEach((element) => {
+        document.querySelector(".add-button").addEventListener("mouseover", () => {
+            document.querySelectorAll(".add-button img").forEach((element) => {
                 element.classList.toggle("hidden");
             });
         });
-        document.querySelector("#add-button").addEventListener("mouseout", () => {
-            document.querySelectorAll("#add-button img").forEach((element) => {
+        document.querySelector(".add-button").addEventListener("mouseout", () => {
+            document.querySelectorAll(".add-button img").forEach((element) => {
                 element.classList.toggle("hidden");
             });
         });
-        document.querySelector("#tag-button").addEventListener("click", () => {
-            document.querySelector("#tag-area").classList.toggle("hidden");
+        document.querySelector(".tag-button").addEventListener("click", () => {
+            document.querySelector(".tag-area").classList.toggle("hidden");
         });
         // ホイールで横スクロール
-        document.querySelector("#tag-area").addEventListener("mousewheel", e => {
+        document.querySelector(".tag-area").addEventListener("mousewheel", e => {
             if (e.deltaX === 0) {
                 e.stopPropagation()
                 e.preventDefault()
-                document.querySelector("#tag-area").scrollBy(e.deltaY, 0)
+                document.querySelector(".tag-area").scrollBy(e.deltaY, 0)
             }
         })
-        let container = document.querySelector("#fileset-editor-container");
+        let container = document.querySelector(".fileset-editor-container");
         container.addEventListener("click", () => {
             // coverにhiddenがなければhiddenを付与し, contentのhiddenを削除    
             if (!container.querySelector(".cover").classList.contains("hidden")) {
@@ -212,7 +212,7 @@
                 }
             }
         })
-        document.querySelectorAll("#tag-area .tag").forEach((tag) => {
+        document.querySelectorAll(".tag-area .tag").forEach((tag) => {
             tag.addEventListener("click", () => {
                 tag.classList.toggle("selected");
             })
