@@ -63,7 +63,8 @@ pub async fn menu_action(command: String, args: Value) -> Result<Value, String> 
             copy(args["path"].as_str().unwrap().to_string()).await?;
             Ok(serde_json::json!({}))
         }
-        
+        "default" => Ok(serde_json::json!({})),
+
         _ => Err(format!("Unknown command: {}", command)),
     }
 }

@@ -46,12 +46,12 @@
   display: none;
 }
 
-.fileset-appearance, #filesets .fileset, .fileset-editor-container {
+.fileset-appearance, #filesets .fileset, #fileset-editor-container {
   border: 1px solid rgb(229, 229, 229);
   background-color: rgb(255, 255, 255);
   margin-bottom: -1px;
 }
-.fileset-appearance .fileset-header, #filesets .fileset .fileset-header, .fileset-editor-container .fileset-header {
+.fileset-appearance .fileset-header, #filesets .fileset .fileset-header, #fileset-editor-container .fileset-header {
   position: relative;
   justify-content: space-between;
   align-items: center;
@@ -59,17 +59,17 @@
   width: calc(100% - 2 * 5px);
   border-bottom: 1px solid rgb(229, 229, 229);
 }
-.fileset-appearance .fileset-header *, #filesets .fileset .fileset-header *, .fileset-editor-container .fileset-header * {
+.fileset-appearance .fileset-header *, #filesets .fileset .fileset-header *, #fileset-editor-container .fileset-header * {
   min-width: 0;
 }
-.fileset-appearance .fileset-header .fileset-identifiers, #filesets .fileset .fileset-header .fileset-identifiers, .fileset-editor-container .fileset-header .fileset-identifiers {
+.fileset-appearance .fileset-header .fileset-identifiers, #filesets .fileset .fileset-header .fileset-identifiers, #fileset-editor-container .fileset-header .fileset-identifiers {
   max-width: calc(100% - 4em);
 }
-.fileset-appearance .fileset-header .fileset-identifiers *, #filesets .fileset .fileset-header .fileset-identifiers *, .fileset-editor-container .fileset-header .fileset-identifiers * {
+.fileset-appearance .fileset-header .fileset-identifiers *, #filesets .fileset .fileset-header .fileset-identifiers *, #fileset-editor-container .fileset-header .fileset-identifiers * {
   overflow-x: hidden;
   white-space: nowrap;
 }
-.fileset-appearance .fileset-header .fileset-identifiers .fileset-name, #filesets .fileset .fileset-header .fileset-identifiers .fileset-name, .fileset-editor-container .fileset-header .fileset-identifiers .fileset-name {
+.fileset-appearance .fileset-header .fileset-identifiers .fileset-name, #filesets .fileset .fileset-header .fileset-identifiers .fileset-name, #fileset-editor-container .fileset-header .fileset-identifiers .fileset-name {
   flex-shrink: 0;
   margin-top: 0.2em;
   margin-bottom: 0.5em;
@@ -77,7 +77,7 @@
   width: 100%;
   border-bottom: 1px solid gray;
 }
-.fileset-appearance .fileset-header .fileset-identifiers .fileset-path, #filesets .fileset .fileset-header .fileset-identifiers .fileset-path, .fileset-editor-container .fileset-header .fileset-identifiers .fileset-path {
+.fileset-appearance .fileset-header .fileset-identifiers .fileset-path, #filesets .fileset .fileset-header .fileset-identifiers .fileset-path, #fileset-editor-container .fileset-header .fileset-identifiers .fileset-path {
   font-size: 0.9em;
   margin-bottom: 0.2em;
   margin-top: 0;
@@ -85,7 +85,7 @@
   color: rgb(100, 100, 100);
   width: 100%;
 }
-.fileset-appearance .fileset-header .fileset-menu-wrapper, #filesets .fileset .fileset-header .fileset-menu-wrapper, .fileset-editor-container .fileset-header .fileset-menu-wrapper {
+.fileset-appearance .fileset-header .fileset-menu-wrapper, #filesets .fileset .fileset-header .fileset-menu-wrapper, #fileset-editor-container .fileset-header .fileset-menu-wrapper {
   position: absolute;
   top: 0;
   right: 0;
@@ -95,20 +95,20 @@
      -moz-user-select: none;
           user-select: none;
 }
-.fileset-appearance .fileset-header .fileset-menu-wrapper label, #filesets .fileset .fileset-header .fileset-menu-wrapper label, .fileset-editor-container .fileset-header .fileset-menu-wrapper label {
+.fileset-appearance .fileset-header .fileset-menu-wrapper label, #filesets .fileset .fileset-header .fileset-menu-wrapper label, #fileset-editor-container .fileset-header .fileset-menu-wrapper label {
   position: absolute;
   top: 45%;
   right: 0;
   margin-right: 0.5em;
   transform: translateY(-60%);
 }
-.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox, .fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox,
+.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox, #fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox,
 .fileset-appearance .fileset-header .fileset-menu-wrapper .menu,
 #filesets .fileset .fileset-header .fileset-menu-wrapper .menu,
-.fileset-editor-container .fileset-header .fileset-menu-wrapper .menu {
+#fileset-editor-container .fileset-header .fileset-menu-wrapper .menu {
   display: none;
 }
-.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu, .fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu {
+.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu, #fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu {
   position: absolute;
   top: 0;
   right: 0;
@@ -121,23 +121,17 @@
   border-radius: 0 0 0 0.5em;
   background-color: white;
 }
-.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-checkbox, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-checkbox, .fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-checkbox {
-  display: none;
-}
-.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-checkbox:checked ~ .menu, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-checkbox:checked ~ .menu, .fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-checkbox:checked ~ .menu {
-  display: block;
-}
-.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item, .fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item {
+.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item, #fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item {
   color: black;
   padding: 12px 16px;
   text-decoration: none;
   display: block;
 }
-.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item:hover, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item:hover, .fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item:hover {
+.fileset-appearance .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item:hover, #filesets .fileset .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item:hover, #fileset-editor-container .fileset-header .fileset-menu-wrapper .fileset-menu-checkbox:checked + .menu .fileset-menu-item:hover {
   background-color: #f1f1f1;
 }
 
-.bottom-area-design, .fileset-editor-container .bottom-area, .fileset-editor-container .cover {
+.bottom-area-design, .fileset-editor .bottom-area, #fileset-editor-container .bottom-area, #fileset-editor-container .cover {
   background-color: #eaeaea;
   display: flex;
   align-content: center;
@@ -147,56 +141,26 @@
   padding-right: 5px;
   height: 1.8em;
 }
-.bottom-area-design img, .fileset-editor-container .bottom-area img, .fileset-editor-container .cover img {
+.bottom-area-design img, .fileset-editor .bottom-area img, #fileset-editor-container .bottom-area img, #fileset-editor-container .cover img {
   display: block;
   margin: auto;
 }
 
-.fileset-editor-container {
+#fileset-editor-container {
   margin-bottom: 4em;
   margin-left: 40px;
   width: 80vw;
 }
-.fileset-editor-container input,
-.fileset-editor-container button,
-.fileset-editor-container .bottom-button {
+#fileset-editor-container .cover .bottom-button {
   cursor: pointer;
 }
-.fileset-editor-container input {
-  cursor: text;
-}
-.fileset-editor-container content {
-  height: 4.2em;
-}
-.fileset-editor-container .bottom-area #tag-button:hover {
-  filter: brightness(0.95);
-}
-.fileset-editor-container .tag-area {
-  height: 3em;
-  width: calc(80vw - 1em);
-  flex-wrap: nowrap;
-  overflow-x: scroll;
-  overflow-y: visible;
-  white-space: nowrap;
+#fileset-editor-container .tags {
   position: absolute;
   padding-bottom: 0.3em;
   top: 7em;
 }
-.fileset-editor-container .tag-area .tag {
-  background-color: #77AAC9;
-  color: #2D2440;
-}
-.fileset-editor-container .tag-area .tag:hover {
-  background-color: #5293bb;
-  color: #16121f;
-}
-.fileset-editor-container .tag-area .tag.selected {
-  background-color: #2D2440;
-  color: #77AAC9;
-}
-.fileset-editor-container .tag-area .tag.selected:hover {
-  background-color: #443661;
-  color: #9cc1d7;
+#fileset-editor-container .bottom-area .tag-button:hover {
+  filter: brightness(0.95);
 }
 
 .fileset-editor input {
@@ -208,27 +172,27 @@
   border: 1px solid rgb(0, 0, 0);
   background-color: seashell;
 }
-.fileset-editor .editing-fileset-identifiers .fileset-name-group,
-.fileset-editor .editing-fileset-identifiers .fileset-path-group {
+.fileset-editor .fileset-header .fileset-name,
+.fileset-editor .fileset-header .fileset-path {
   width: 100%;
 }
-.fileset-editor .editing-fileset-identifiers input {
+.fileset-editor .fileset-header input {
   display: block;
   box-sizing: border-box;
   width: 100%;
   height: 2em;
   padding: 0.5em;
 }
-.fileset-editor .editing-fileset-identifiers .fileset-path-group .flex-wrapper {
+.fileset-editor .fileset-header .fileset-path .flex-wrapper {
   display: flex;
   justify-content: space-around;
   align-items: center;
   flex-direction: row;
 }
-.fileset-editor .editing-fileset-identifiers .fileset-path-group .flex-wrapper input {
+.fileset-editor .fileset-header .fileset-path .flex-wrapper input {
   width: calc(100% - min(5.5em, 20%) - 0.5em);
 }
-.fileset-editor .editing-fileset-identifiers .fileset-path-group .flex-wrapper button {
+.fileset-editor .fileset-header .fileset-path .flex-wrapper button {
   display: block;
   width: min(5.5em, 20%);
   height: 2em;
@@ -243,11 +207,43 @@
 .fileset-editor .tags .tag {
   max-width: min(100%, 21.4em);
 }
-.fileset-editor .tags .tag .dynamically-sizing {
-  text-overflow: clip;
-  min-width: 1em;
-  width: 1em;
-  max-width: min(100%, 20em);
+.fileset-editor input,
+.fileset-editor button,
+.fileset-editor .bottom-button {
+  cursor: pointer;
+}
+.fileset-editor input {
+  cursor: text;
+}
+.fileset-editor .bottom-area {
+  justify-content: right;
+}
+.fileset-editor .bottom-area .tag-button:hover {
+  filter: brightness(0.95);
+}
+.fileset-editor .tags {
+  height: 3em;
+  width: calc(80vw - 1em);
+  flex-wrap: nowrap;
+  overflow-x: scroll;
+  overflow-y: visible;
+  white-space: nowrap;
+}
+.fileset-editor .tags .tag {
+  background-color: #77AAC9;
+  color: #2D2440;
+}
+.fileset-editor .tags .tag:hover {
+  background-color: #5293bb;
+  color: #16121f;
+}
+.fileset-editor .tags .tag.selected {
+  background-color: #2D2440;
+  color: #77AAC9;
+}
+.fileset-editor .tags .tag.selected:hover {
+  background-color: #443661;
+  color: #9cc1d7;
 }
 
 #filesets {

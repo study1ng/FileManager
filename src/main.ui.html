@@ -1,0 +1,180 @@
+<link rel="stylesheet" href="styles.css" />
+
+<div id="main">
+    <div id="fileset-editor-container">
+        <div class="cover non-selectable">
+            <div class="bottom-button">
+                <img src="assets/svg/tag.svg">
+            </div>
+            <div class="bottom-button">
+                <img src="assets/svg/rectangle.svg">
+                <img class="hidden" src="assets/svg/checkbox.svg">
+            </div>
+        </div>
+        <div class="hidden fileset-editor">
+            <div class="fileset-header">
+                <div class="fileset-name">
+                    <input type="text" placeholder="名前" name="fileset-name" title="fileset-name">
+                </div>
+                <div class="fileset-path">
+                    <div class="flex-wrapper">
+                        <input type="text" placeholder="パス" name="fileset-path" title="file">
+                        <button class="non-selectable" type="button">
+                            Browse
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="non-selectable bottom-area">
+                <div class="bottom-button tag-button" aria-label="button to edit tags for fileset">
+                    <img src="assets/svg/tag.svg" alt="change its tag">
+                </div>
+                <div class="bottom-button add-button" aria-label="button to add fileset">
+                    <img src="assets/svg/rectangle.svg" alt="click here to add new fileset">
+                    <img class="hidden" src="assets/svg/checkbox.svg" alt="click here to add new file">
+                </div>
+            </div>
+            <div class="tags hidden non-selectable">
+                <p class="tag">Programming</p>
+                <p class="tag">Libraries</p>
+                <p class="tag">Stylesheets</p>
+                <p class="tag">Game</p>
+                <p class="tag">AndSome</p>
+            </div>
+        </div>
+    </div>
+    <ul id="filesets">
+        <li class="fileset">
+            <div class="fileset-header">
+                <div class="fileset-identifiers">
+                    <p class="fileset-name">Python Libs</p>
+                    <p class="fileset-path">C:/Users/UserName/AppData/Local/Programs/Python/Python311/python.exe</p>
+                </div>
+                <div class="fileset-menu-wrapper">
+                    <label for="chkbox1">...</label>
+                    <input type="radio" name="menu" id="chkbox1" class="fileset-menu-checkbox">
+                    <ul class="menu">
+                        <li class="fileset-menu-item">編集する</li>
+                        <li class="fileset-menu-item">削除</li>
+                        <li class="fileset-menu-item">開き方を指定する</li>
+                        <li class="fileset-menu-item">パスをコピーする</li>
+                        <li class="fileset-menu-item">ファイルを開く</li>
+                        <li class="fileset-menu-item">親フォルダを開く</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tags">
+                <p class="tag">Programming</p>
+                <p class="tag">Libraries</p>
+            </div>
+        </li>
+        <div class="fileset-editor fileset">
+            <div class="fileset-header">
+                <div class="fileset-name">
+                    <input type="text" placeholder="名前" name="fileset-name" title="fileset-name"
+                        value="editing-fileset">
+                </div>
+                <div class="fileset-path">
+                    <div class="flex-wrapper">
+                        <input type="text" placeholder="パス" name="fileset-path" title="file" value="editing://path">
+                        <button class="non-selectable" type="button">
+                            Browse
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="non-selectable bottom-area">
+                <div class="bottom-button add-button" aria-label="button to add fileset">
+                    <img src="assets/svg/rectangle.svg" alt="click here to add new fileset">
+                    <img class="hidden" src="assets/svg/checkbox.svg" alt="click here to add new file">
+                </div>
+            </div>
+            <div class="tags non-selectable">
+                <p class="tag">Programming</p>
+                <p class="tag">Libraries</p>
+                <p class="tag">Stylesheets</p>
+                <p class="tag">Game</p>
+                <p class="tag">AndSome</p>
+            </div>
+        </div>
+        <li class="fileset">
+            <div class="fileset-header">
+                <div class="fileset-identifiers">
+                    <p class="fileset-name">Private somethings</p>
+                    <p class="fileset-path">
+                        C:/Users/UserName/for-school/Advanced-chemistry/reports/1/pdfs/hidden-folder/games/hogehoge/hogehoge.exe
+                    </p>
+                </div>
+                <div class="fileset-menu-wrapper">
+                    <label for="chkbox2">...</label>
+                    <input type="radio" name="menu" id="chkbox2" class="fileset-menu-checkbox">
+                    <ul class="menu">
+                        <li class="fileset-menu-item">編集する</li>
+                        <li class="fileset-menu-item">削除</li>
+                        <li class="fileset-menu-item">開き方を指定する</li>
+                        <li class="fileset-menu-item">パスをコピーする</li>
+                        <li class="fileset-menu-item">ファイルを開く</li>
+                        <li class="fileset-menu-item">親フォルダを開く</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="tags">
+                <p class="tag">Stylesheets</p>
+                <p class="tag">Game</p>
+            </div>
+        </li>
+    </ul>
+</div>
+<script defer>
+    document.querySelectorAll(".add-button").forEach((t) => {
+        t.addEventListener("mouseover", () => {
+            t.querySelectorAll(".add-button img").forEach((element) => {
+                element.classList.toggle("hidden");
+            });
+        });
+    })
+    document.querySelectorAll(".add-button").forEach((t) => {
+        t.addEventListener("mouseout", () => {
+            t.querySelectorAll(".add-button img").forEach((element) => {
+                element.classList.toggle("hidden");
+            });
+        });
+    })
+    document.querySelectorAll(".tag-button").forEach((t) => {
+        t.addEventListener("click", () => {
+            t.parentElement.parentElement.querySelector(".tags").classList.toggle("hidden");
+        });
+    })
+    // ホイールで横スクロール
+    document.querySelectorAll(".tags").forEach((t) => {
+        t.addEventListener("mousewheel", e => {
+            if (e.deltaX === 0) {
+                e.stopPropagation()
+                e.preventDefault()
+                t.scrollBy(e.deltaY, 0)
+            }
+        })
+    })
+    let container = document.querySelector("#fileset-editor-container");
+    container.addEventListener("click", () => {
+        // coverにhiddenがなければhiddenを付与し, contentのhiddenを削除    
+        if (!container.querySelector(".cover").classList.contains("hidden")) {
+            container.querySelector(".cover").classList.add("hidden");
+            container.querySelector(".fileset-editor").classList.remove("hidden");
+        }
+    })
+    // クリックした位置がcontainer以外ならcoverにhiddenを削除し, contentにhiddenを付与
+    document.addEventListener("click", (e) => {
+        if (!container.contains(e.target)) {
+            if (!container.querySelector(".fileset-editor").classList.contains("hidden")) {
+                container.querySelector(".cover").classList.remove("hidden");
+                container.querySelector(".fileset-editor").classList.add("hidden");
+            }
+        }
+    })
+    document.querySelectorAll(".fileset-editor .tags .tag").forEach((tag) => {
+        tag.addEventListener("click", () => {
+            tag.classList.toggle("selected");
+        })
+    })
+</script>

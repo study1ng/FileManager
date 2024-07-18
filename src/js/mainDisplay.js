@@ -4,7 +4,6 @@ const { resolve, basename } = window.__TAURI__.path;
 const { Command } = window.__TAURI__.shell;
 let current_editing = null;
 
-
 window.addEventListener('DOMContentLoaded', async () => {
 });
 
@@ -50,11 +49,12 @@ export function makeFileset(name, path, tags, opener) {
         async function clicked(event) {
             let target = event.target;
             if (target.classList.contains("fileset-menu-item")) {
-                let command = "";
+                let command = "default";
                 let args = { name: name, path: path, opener: opener };
                 switch (target.textContent) {
                     case "編集する":
-                        command = "edit";
+                        let fileset = target.parentElement.parentElement.parentElement.parentElement;
+                        console.log(fileset);
                         break;
                     case "パスをコピーする":
                         command = "copy";
