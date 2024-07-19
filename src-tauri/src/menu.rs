@@ -1,7 +1,6 @@
 use serde_json::Value;
 use std::path::Path;
 use std::process::Command;
-use tauri::command;
 
 async fn open_parent_folder(path: String) -> Result<(), String> {
     let path = Path::new(&path);

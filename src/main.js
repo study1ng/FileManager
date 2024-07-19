@@ -1,7 +1,7 @@
 const { invoke } = window.__TAURI__.tauri;
 const { emit, listen } = window.__TAURI__.event;
 import { setupTabHookHovering, setupTabDragging } from "./js/tabControl.js";
-import { makeFileset, setupFilesetEditor } from "./js/mainDisplay.js";
+import { makeFileset, setupFilesetEditor, setupFileset } from "./js/mainDisplay.js";
 let filesetData;
 let selectedFileSet = null;
 let passwordCheckBox;
@@ -88,8 +88,10 @@ function initFilesets(name, password) {
     let filesets = document.querySelector("#filesets");
     filesets.innerHTML = "";
     invoke("read_filesets", { filesetManager: filesetData, name: name, password: password }).then((result) => {
-        for (let fileset of result) {
-            filesets.appendChild(makeFileset(fileset.name, fileset.path, fileset.tags, fileset.opener));
+        for (let fs of result) {
+            let fileset = makeFileset(fs.name, fs.path, fs.tags, fs.opener);
+            filesets.appendChild(fileset);
+            setupFileset(fileset);
         }
     });
 }
@@ -111,11 +113,9 @@ function setFileSetManager() {
 async function login(event) {
 
     event.preventDefault();
-    console.log("login is called");
     let enteredPassword = document.querySelector("#login-password").value;
     // if no errors occur, result is null
     let result = await invoke("login", { "fileSets": filesetData, "password": enteredPassword, "fileSetName": selectedFileSet.querySelector("td:nth-child(2)").textContent });
-    console.log(result);
     if (result == null) {
         document.querySelector("#tab-container").classList.add("inactive");
         document.querySelector("#main").classList.remove("inactive");
@@ -133,7 +133,6 @@ async function login(event) {
 
 async function register(event) {
     event.preventDefault();
-    console.log("register is called");
     let needPassword = passwordCheckBox.checked;
     let result = await invoke("register", {
         "fileSets": filesetData,
@@ -219,9 +218,10 @@ async function saveFilesets() {
 function setupMainDisplay() {
     invoke("console_log", { message: "setupMainDisplay" });
     initFilesets(loginData.filesetName, loginData.password);
-    setupFilesetEditor();
+    setupFilesetEditor(document.querySelector(".fileset-editor"));
     listen("close_window", () => {
         saveFilesets();
         emit("close_window");
     });
 }
+

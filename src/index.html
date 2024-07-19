@@ -141,7 +141,7 @@
                 <div class="tags hidden non-selectable">
                     <p class="tag">Programming</p>
                     <p class="tag">Libraries</p>
-                <p class="tag">Stylesheets</p>
+                    <p class="tag">Stylesheets</p>
                     <p class="tag">Game</p>
                     <p class="tag">AndSome</p>
                 </div>
@@ -151,36 +151,7 @@
         </ul>
     </div>
     <script defer>
-    document.querySelectorAll(".add-button").forEach((t) => {
-        t.addEventListener("mouseover", () => {
-            t.querySelectorAll(".add-button img").forEach((element) => {
-                element.classList.toggle("hidden");
-            });
-        });
-    })
-    document.querySelectorAll(".add-button").forEach((t) => {
-        t.addEventListener("mouseout", () => {
-            t.querySelectorAll(".add-button img").forEach((element) => {
-                element.classList.toggle("hidden");
-            });
-        });
-    })
-    document.querySelectorAll(".tag-button").forEach((t) => {
-        t.addEventListener("click", () => {
-            t.parentElement.parentElement.querySelector(".tags").classList.toggle("hidden");
-        });
-    })
-        // ホイールで横スクロール
-    document.querySelectorAll(".tags").forEach((t) => {
-        t.addEventListener("mousewheel", e => {
-            if (e.deltaX === 0) {
-                e.stopPropagation()
-                e.preventDefault()
-                t.scrollBy(e.deltaY, 0)
-            }
-        })
-    })
-    let container = document.querySelector("#fileset-editor-container");
+        let container = document.querySelector("#fileset-editor-container");
         container.addEventListener("click", () => {
             // coverにhiddenがなければhiddenを付与し, contentのhiddenを削除    
             if (!container.querySelector(".cover").classList.contains("hidden")) {
@@ -196,11 +167,6 @@
                     container.querySelector(".fileset-editor").classList.add("hidden");
                 }
             }
-        })
-    document.querySelectorAll(".fileset-editor .tags .tag").forEach((tag) => {
-            tag.addEventListener("click", () => {
-                tag.classList.toggle("selected");
-            })
         })
     </script>
 </body>
